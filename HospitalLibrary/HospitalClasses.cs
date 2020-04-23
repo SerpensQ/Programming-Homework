@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalLibrary
 {
-    public class Person
+    public class Patient
     {
         public enum TypeOfService
 
@@ -18,14 +18,12 @@ namespace HospitalLibrary
         public string Name;
         public string Surname;
         public readonly string PolicyNumber;
-        public string ArrivalDate;
-        public string DepartureDate;
+        public DateTime ArrivalDate = new DateTime(2017, 11, 20);
+        public DateTime DepartureDate = new DateTime(2017, 11, 30);
         public TypeOfService Service;
-        public string CostOfTreatment;
+        public int CostOfTreatment = 4500;
 
-
-        public Person(string name, string surname, string policynumber,
-                        string arrival, string departure, TypeOfService treatment, string cost)
+        public Patient(string name, string surname, string policynumber)
 
         {
             Name = name;
@@ -33,21 +31,15 @@ namespace HospitalLibrary
             Surname = surname;
 
             PolicyNumber = policynumber;
+   
 
-            ArrivalDate=arrival;
-
-            DepartureDate = departure;
-
-            Service = treatment;
-
-            CostOfTreatment = cost;
         }
 
         public override string ToString()
         {
             return $"{Name} {Surname}";
         }
-        public void PrintInfo()
+        public virtual void PrintInfo()
         {
             Console.WriteLine(this);
             var treatment = "";
@@ -62,7 +54,10 @@ namespace HospitalLibrary
                     break;
             }
 
-            Console.WriteLine($"Policy number: {PolicyNumber}, The date of arrival: {ArrivalDate}, The date of departure: {DepartureDate}, Type of service: {treatment}, The cost of treatment: {CostOfTreatment}");
+            Console.WriteLine($"Policy number: {PolicyNumber}, The date of arrival: {ArrivalDate.ToShortDateString()}, The date of departure: {DepartureDate.ToShortDateString()}, Type of service: {treatment}, The cost of treatment: {CostOfTreatment}");
         }
+
     }
+
 }
+
