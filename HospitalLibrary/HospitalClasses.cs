@@ -18,10 +18,10 @@ namespace HospitalLibrary
         public string Name;
         public string Surname;
         public readonly string PolicyNumber;
-        public DateTime ArrivalDate = new DateTime(2017, 11, 20);
-        public DateTime DepartureDate = new DateTime(2017, 11, 30);
+        public DateTime ArrivalDate;
+        public DateTime DepartureDate;
         public TypeOfService Service;
-        public int CostOfTreatment = 4500;
+        public int CostOfTreatment;
 
         public Patient(string name, string surname, string policynumber)
 
@@ -34,6 +34,8 @@ namespace HospitalLibrary
    
 
         }
+
+        
 
         public override string ToString()
         {
@@ -58,6 +60,8 @@ namespace HospitalLibrary
         }
 
     }
+
+   
 
 }
 
