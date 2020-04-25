@@ -61,7 +61,27 @@ namespace HospitalLibrary
 
     }
 
-   
+    public class HospitalPatient : Patient
+    {
+        public string MedicalDepartment;
+        public int RoomNumber;
+
+        public HospitalPatient(string name, string surname, string policynumber)
+        : base(name, surname, policynumber)
+        {
+            
+
+        }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"Hospital patient from {MedicalDepartment} department, room number: {RoomNumber}");
+
+        }
+
+    }
+
 
 }
 
