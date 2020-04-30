@@ -80,15 +80,15 @@ namespace HospitalUnitTests
     public class HospitalPatientUnitTest
     {
 
-        //[TestMethod]
-        //public void ConstructorHPTestMethod()
-        //{
-        //    var Jiho = GetTestHospitalPatient();
+        [TestMethod]
+        public void ConstructorHPTestMethod()
+        {
+            var Jiho = GetTestHospitalPatient();
 
-        //    Assert.AreEqual("allergology", Jiho.MedicalDepartment);
-        //    Assert.AreEqual(311, Jiho.RoomNumber);
+            Assert.AreEqual("allergology", Jiho.MedicalDepartment);
+            Assert.AreEqual(311, Jiho.RoomNumber);
 
-        //}
+        }
 
         [TestMethod]
         public void PrintInfoHPTestMethod()
