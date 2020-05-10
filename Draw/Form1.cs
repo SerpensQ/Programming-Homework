@@ -25,15 +25,15 @@ namespace Draw
             Graphics g = e.Graphics;
 
       
-            using (var pen = new Pen(Color.Aquamarine, 10))
+            using (var pen = new Pen(Color.Teal, 10))
             {
                 g.DrawLine(pen, 5, 5, 200, 200);
                 g.DrawRectangle(pen, 5, 5, 300, 200);
             }
           
-            g.FillEllipse(Brushes.BlueViolet, ClientSize.Width/2-50, ClientSize.Height/2-50, 100,100);
+            g.FillEllipse(Brushes.OrangeRed, ClientSize.Width/2-50, ClientSize.Height/2-50, 100,100);
 
-            using(var pen= new Pen(Color.Sienna, 6))
+            using(var pen= new Pen(Color.Orchid, 6))
             {
                 g.DrawEllipse(pen, 3, 3, ClientSize.Width - 6, ClientSize.Height - 6);
             }
