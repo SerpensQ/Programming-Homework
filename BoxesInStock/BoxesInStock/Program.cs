@@ -13,7 +13,7 @@ namespace BoxesInStock
         {
             var commands = new List<string>();
             var lines = new List<string>();
-            // читаем данные из файла и добавляем их в наш список
+           
             try
             {
                 using (StreamReader sr = new StreamReader("boxes.txt"))
@@ -25,10 +25,10 @@ namespace BoxesInStock
             }
             catch { }
 
-            // создаем список стопок.
+          
             var stacks = new List<Stack<int>>();
             
-            // переделываем строки в массив данных, а после кладем все в Stack
+            
             for(var i = 0; i< lines.Count; i ++)
             {
                 var data = ParseString(lines[i]);
@@ -40,7 +40,7 @@ namespace BoxesInStock
             Console.WriteLine("Исходное расположение:");
             WriteData(stacks);
 
-            // достаем все элементы из стопок и перекладываем в самую первую
+            
             for (var i = 1; i < stacks.Count; i++)
             {
                 var e = stacks[i];
@@ -52,8 +52,7 @@ namespace BoxesInStock
             }
             var value = 0;
 
-            //Все ящики сложены в стопку 1, остальные стопки пустые. Теперь разложим ящики с номерами 3 , 4, 5 по своим стопкам, а с
-            //номерами 1 и 2 переложим в стопку 2.
+           
             while (stacks[0].Count != 0)
             {
                 value = stacks[0].Pop();
@@ -69,8 +68,7 @@ namespace BoxesInStock
                 }
             }
 
-            //Теперь ящики с номерами 3, 4, 5 лежат в своих стопках, стопка 1 пустая. Будем перекладывать из стопки 2 ящики 
-            //с номером 1— в стопку 1, а ящики с номером 2 — в стопку 3.
+          
             while (stacks[1].Count != 0)
             {
                 value = stacks[1].Pop();
@@ -86,15 +84,14 @@ namespace BoxesInStock
                 }
             }
 
-            // Теперь ящики с номером 1 лежат в своей стопке, стопка 2 пустая, а ящики с номером 2 лежат сверху стопки 3.
-            //Переложим их в свою стопку.
+           
             while (stacks[2].Peek() != 3)
             {
                 commands.Add($@"Переложить ящик {2} из стопки {3} в стопку {2}");
                 value = stacks[2].Pop();
                 stacks[value - 1].Push(value);
             }
-            // записываем данные в файл
+           
             try
             {
                 using(StreamWriter sr = new StreamWriter(@"result.txt", false, Encoding.Default))
@@ -115,7 +112,7 @@ namespace BoxesInStock
 
         }
 
-        // Метод для правильного вывода данных в стопках 
+        
         private static void WriteData(List<Stack<int>> stacks)
         {
             for (int i = 0; i < stacks.Count; i++)
@@ -128,7 +125,7 @@ namespace BoxesInStock
             }
         }
 
-        //Парсим строку по пробелу, и записываем в массив
+       
         private static string[] ParseString(string elemnent)
         {
             return elemnent.Split(' ');
