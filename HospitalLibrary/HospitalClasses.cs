@@ -31,11 +31,11 @@ namespace HospitalLibrary
             Surname = surname;
 
             PolicyNumber = policynumber;
-   
+
 
         }
 
-        
+
 
         public override string ToString()
         {
@@ -63,13 +63,14 @@ namespace HospitalLibrary
 
     public class HospitalPatient : Patient
     {
-        public string MedicalDepartment;
-        public int RoomNumber;
+        public string MedicalDepartment { get; set; }
+        public int RoomNumber { get; set; }
 
-        public HospitalPatient(string name, string surname, string policynumber)
+        public HospitalPatient(string name, string surname, string policynumber, string medicaldepartment, int roomnumber)
         : base(name, surname, policynumber)
         {
-            
+            MedicalDepartment = medicaldepartment;
+            RoomNumber = roomnumber;
 
         }
 
@@ -81,7 +82,51 @@ namespace HospitalLibrary
         }
 
     }
+    public class DayHospitalPatient : Patient
+    {
+        public DateTime ComeInTime { get; set; }
+        public DateTime LeaveTime { get; set; }
+        public DayHospitalPatient(string name, string surname, string policynumber, DateTime comeintime, DateTime leavetime)
+         : base(name, surname, policynumber)
+        {
+            ComeInTime = comeintime;
+            LeaveTime = leavetime;
+
+        }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"Day Hospital patient came in at {ComeInTime.ToShortTimeString()} o'clock and left at {LeaveTime.ToShortTimeString()} o'clock");
+
+        }
+
+    }
+
+
+
+    public class OutPatient : Patient
+    {
+        public string DoctorName { get; set; }
+        
+        public OutPatient(string name, string surname, string policynumber, string doctorname)
+         : base(name, surname, policynumber)
+        {
+            DoctorName = doctorname;
+
+        }
+
+        public override void PrintInfo()
+        {
+            base.PrintInfo();
+            Console.WriteLine($"The patient was treated by Doctor {DoctorName}");
+
+        }
+
+    }
 
 
 }
+
+
 

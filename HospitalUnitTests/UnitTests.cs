@@ -98,9 +98,9 @@ namespace HospitalUnitTests
             var lines = new[]
             {
             "Jiho Woo",
-            $"Policy number: 14101992, The date of arrival: 11.04.2015, The date of departure: 26.04.2015,"+
-            $"Type of service: insurance covered, The cost of treatment: 4380,"+
-            $" Medical department: allergology, Room number: 311."
+            "Policy number: 14101992, The date of arrival: 11.04.2015, The date of departure: 26.04.2015,"+
+            "Type of service: insurance covered, The cost of treatment: 4380,"+
+            " Medical department: allergology, Room number: 311."
             };
 
             TextWriter oldOut = Console.Out;
@@ -136,16 +136,159 @@ namespace HospitalUnitTests
 
         private HospitalPatient GetTestHospitalPatient()
         {
-            var jiho = new HospitalPatient("Jiho", "Woo", "14101992")
+            var Jiho = new HospitalPatient("Jiho", "Woo", "14101992", "allergology", 311)
             { ArrivalDate = new DateTime(2015, 04, 11), DepartureDate = new DateTime(2015, 04, 26), Service = TypeOfService.InsuranceCover, CostOfTreatment = 4380, MedicalDepartment = "allergology", RoomNumber = 311};
-            //jiho.MedicalDepartment = "allergology";
-            //jiho.RoomNumber = 311;
-            
-            return jiho;
+            Jiho.MedicalDepartment = "allergology";
+            Jiho.RoomNumber = 311;
+
+            return Jiho;
         }
 
 
 
     }
+[TestClass]
+public class DayHospitalPatientUnitTest
+{
+
+    [TestMethod]
+    public void ConstructorTestMethod()
+    {
+        var Jiho = GetTestHospitalPatient();
+
+        Assert.AreEqual("11:00", Jiho.ComeInTime);
+        Assert.AreEqual("17:00", Jiho.LeaveTime);
+
+    }
+
+    [TestMethod]
+    public void PrintInfoHPTestMethod()
+    {
+        var Jiho = GetTestHospitalPatient();
+
+        var lines = new[]
+        {
+            "Jiho Woo",
+            "Policy number: 14101992, The date of arrival: 11.04.2015, The date of departure: 26.04.2015,"+
+            "Type of service: insurance covered, The cost of treatment: 4380,"+
+            "Day Hospital patient came in at 11:00 o'clock and left at 17:00 o'clock"
+            };
+
+        TextWriter oldOut = Console.Out;
+
+        using (FileStream file = new FileStream("test.txt", FileMode.Create))
+        {
+            using (TextWriter writer = new StreamWriter(file))
+            {
+                Console.SetOut(writer);
+                Jiho.PrintInfo();
+            }
+        }
+
+        Console.SetOut(oldOut);
+
+        using (FileStream file = new FileStream("test.txt", FileMode.Open))
+        {
+            using (TextReader reader = new StreamReader(file))
+            {
+                var i = 0;
+
+                while (!(reader as StreamReader).EndOfStream)
+                    Assert.AreEqual(lines[i++], reader.ReadLine());
+
+                Assert.AreEqual(lines.Length, i);
+            }
+        }
+
+        File.Delete("test.txt");
+
+
+    }
+
+    private DayHospitalPatient GetTestHospitalPatient()
+    {
+            var Jiho = new DayHospitalPatient("Jiho", "Woo", "14101992",new DateTime (11, 00), new DateTime (17, 00))
+        { ArrivalDate = new DateTime(2015, 04, 11), DepartureDate = new DateTime(2015, 04, 26), Service = TypeOfService.InsuranceCover, CostOfTreatment = 4380, ComeInTime = new DateTime(11,00), LeaveTime = new DateTime(11,00) };
+        //Jiho.ComeInTime= ;
+        //Jiho.LeaveTime = ;
+
+        return Jiho;
+    }
+
+
 
 }
+
+    [TestClass]
+    public class OutPatientUnitTest
+    {
+
+        [TestMethod]
+        public void ConstructorTestMethod()
+        {
+            var Jiho = GetTestHospitalPatient();
+
+            Assert.AreEqual("Jason Rathbone", Jiho.DoctorName);
+            
+
+        }
+
+        [TestMethod]
+        public void PrintInfoHPTestMethod()
+        {
+            var Jiho = GetTestHospitalPatient();
+
+            var lines = new[]
+            {
+            "Jiho Woo",
+            "Policy number: 14101992, The date of arrival: 11.04.2015, The date of departure: 26.04.2015,"+
+            "Type of service: insurance covered, The cost of treatment: 4380,"+
+            "The patient was treated by Doctor Jason Rathbone"
+            };
+
+            TextWriter oldOut = Console.Out;
+
+            using (FileStream file = new FileStream("test.txt", FileMode.Create))
+            {
+                using (TextWriter writer = new StreamWriter(file))
+                {
+                    Console.SetOut(writer);
+                    Jiho.PrintInfo();
+                }
+            }
+
+            Console.SetOut(oldOut);
+
+            using (FileStream file = new FileStream("test.txt", FileMode.Open))
+            {
+                using (TextReader reader = new StreamReader(file))
+                {
+                    var i = 0;
+
+                    while (!(reader as StreamReader).EndOfStream)
+                        Assert.AreEqual(lines[i++], reader.ReadLine());
+
+                    Assert.AreEqual(lines.Length, i);
+                }
+            }
+
+            File.Delete("test.txt");
+
+
+        }
+
+        private OutPatient GetTestHospitalPatient()
+        {
+            var Jiho = new OutPatient("Jiho", "Woo", "14101992", "Jason Rathbone")
+            { ArrivalDate = new DateTime(2015, 04, 11), DepartureDate = new DateTime(2015, 04, 26), Service = TypeOfService.InsuranceCover, CostOfTreatment = 4380, DoctorName="Jason Rathbone" };
+            //Jiho.DoctorName= ;
+            
+
+            return Jiho;
+        }
+
+
+
+    }
+}
+
