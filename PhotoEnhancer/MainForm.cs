@@ -95,8 +95,14 @@ namespace PhotoEnhancer
                         var k = (double)((NumericUpDown)parametersPanel.Controls["coefficient"]).Value;
 
                         var newR = (int)(pixelColor.R*k);
+                        if (newR > 255) newR = 255;
+
                         var newG = (int)(pixelColor.G * k);
+                        if (newG > 255) newG = 255;
+
                         var newB = (int)(pixelColor.B * k);
+                        if (newB > 255) newB = 255;
+
                         var newColor = new Color();
 
                         newBMP.SetPixel(x, y, Color.FromArgb(newR, newG, newB));
