@@ -21,7 +21,10 @@ namespace PhotoEnhancer
             p.B = p.R;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var mainForm = new MainForm();
+            mainForm.AddFilter(new LighteningFilter());
+            Application.Run(mainForm);
         }
     }
 }
