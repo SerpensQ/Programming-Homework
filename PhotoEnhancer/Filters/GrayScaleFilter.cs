@@ -6,39 +6,29 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
-    public class LighteningFilter : IFilter
+   public class GrayScaleFilter : IFilter
     {
-        public ParameterInfo[] GetParemeterInfo()
-        {
-            return new[]
-            {
-                new ParameterInfo()
-                {
-                    Name="Coefficient",
-                    MinValue=0,
-                    MaxValue=10,
-                    DefaultValue=1,
-                    Increment=0.05
-                }
-            };
-        }
-
         public Photo Process(Photo original, double[] parameters)
         {
             var newPhoto = new Photo(original.Width, original.Height);
-         
+
             for (int x = 0; x < original.Width; x++)
                 for (int y = 0; y < original.Height; y++)
                 {
-                    newPhoto[x, y] = original[x, y] * parameters[0];
+                    var channel = 0.3 * original[x, y].R + 0.6 * original[x, y].G + 0.1 * original[x, y].B;
+                    newPhoto[x, y] = new Pixel(channel, channel, channel);
                 }
 
             return newPhoto;
         }
-
         public override string ToString()
         {
-            return "Brighter | Darker";
+            return "Gray scale";
+        }
+
+        ParameterInfo[] IFilter.GetParemeterInfo()
+        {
+            return new ParameterInfo[0];
         }
     }
 }
