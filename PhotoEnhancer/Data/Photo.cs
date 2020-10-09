@@ -16,7 +16,6 @@ namespace PhotoEnhancer
             
         }
 
-        
         public int Height
         {
             get { return data.GetLength(1); }
@@ -28,11 +27,6 @@ namespace PhotoEnhancer
         {
             data = new Pixel[CheckSize(width, "ширина"), 
                              CheckSize(height, "высота")];
-
-            //for (int x = 0; x < width; x++)
-            //    for (int y = 0; y < height; y++)
-            //            data[x, y] = new Pixel();
-         
         }
 
         public Pixel this[int x, int y]
