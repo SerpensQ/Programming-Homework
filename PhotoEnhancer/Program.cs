@@ -25,6 +25,8 @@ namespace PhotoEnhancer
             var mainForm = new MainForm();
             mainForm.AddFilter(new LighteningFilter());
             mainForm.AddFilter(new GrayScaleFilter());
+            mainForm.AddFilter(new RGBtoHSLtoRGBFilter());
+            mainForm.AddFilter(new MonochromeNoiseFilter());
             Application.Run(mainForm);
         }
     }
