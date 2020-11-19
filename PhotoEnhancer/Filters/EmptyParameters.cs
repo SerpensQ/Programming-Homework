@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
-    class EmptyParameters : IParameters
+    public class EmptyParameters : IParameters
     {
         public ParameterInfo[] GetDescription()
         {

@@ -50,17 +50,19 @@
     <Compile Include="Data\Photo.cs" />
     <Compile Include="Data\Pixel.cs" />
     <Compile Include="Filters\EmptyParameters.cs" />
-    <Compile Include="Filters\GrayScaleFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\IParameters.cs" />
-    <Compile Include="Filters\LighteningFilter.cs" />
     <Compile Include="Filters\LighteningParameters.cs" />
-    <Compile Include="Filters\MonochromeNoiseFilter.cs" />
     <Compile Include="Filters\MonochromeNoiseParameters.cs" />
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
     <Compile Include="Filters\PixelFilter.cs" />
-    <Compile Include="Filters\RGBtoHSLtoRGBFilter.cs" />
+    <Compile Include="Transform\FreeTransformer.cs" />
+    <Compile Include="Transform\ITransformer.cs" />
+    <Compile Include="Transform\RotateTransformer.cs" />
+    <Compile Include="Transform\RotationParameters.cs" />
+    <Compile Include="Transform\TransformFilter.cs" />
+    <Compile Include="Transform\TransformFilter%28Parametrized%29.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

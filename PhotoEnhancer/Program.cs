@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,10 +23,50 @@ namespace PhotoEnhancer
             Application.SetCompatibleTextRenderingDefault(false);
 
             var mainForm = new MainForm();
-            mainForm.AddFilter(new LighteningFilter());
-            mainForm.AddFilter(new GrayScaleFilter());
-            mainForm.AddFilter(new RGBtoHSLtoRGBFilter());
-            mainForm.AddFilter(new MonochromeNoiseFilter());
+            mainForm.AddFilter(new PixelFilter<LighteningParameters>
+                ("Brighter | Darker", (pixel, parameters) => pixel*parameters.Coefficient));
+
+            mainForm.AddFilter(new PixelFilter<EmptyParameters>(
+                "Gray scale", (pixel, parameters)=> 
+                {
+                    var channel = 0.3 * pixel.R + 0.6 * pixel.G + 0.1 * pixel.B;
+                    return new Pixel(channel, channel, channel);
+                }
+                ));
+
+            mainForm.AddFilter(new PixelFilter<EmptyParameters> ("RGB -> HSL -> RGB", (pixel, parameters)=>
+            {
+                var OriginalHue = Convertors.GetPixelHue(pixel);
+                var OriginalSaturation = Convertors.GetPixelSaturation(pixel);
+                var OriginalLightness = Convertors.GetPixelLightness(pixel);
+               
+                return Convertors.HSLtoPixel(OriginalHue, OriginalSaturation, OriginalLightness);
+            }
+            ));
+
+            mainForm.AddFilter(new PixelFilter<MonochromeNoiseParameters> ("Monochromatic Noise", (pixel, parameters)=>
+            {
+                var OriginalHue = Convertors.GetPixelHue(pixel);
+                var OriginalSaturation = Convertors.GetPixelSaturation(pixel);
+                var OriginalLightness = Convertors.GetPixelLightness(pixel);
+
+                Random r = new Random();
+                var NewLightness = parameters.NoiseIntencity * r.Next(0, 2) * OriginalLightness;
+
+                return Convertors.HSLtoPixel(OriginalHue, OriginalSaturation, NewLightness);
+            }
+            ));
+
+            mainForm.AddFilter(new TransformFilter("Horizontal Mirror", size => size,
+                (point, size) => new Point(size.Width - point.X - 1, point.Y)
+            ));
+
+            mainForm.AddFilter(new TransformFilter("Rotate 90 degrees left", size => new Size(size.Height, size.Width),
+                (point, size) => new Point(size.Width - point.Y - 1, point.X)
+            ));
+
+            mainForm.AddFilter(new TransformFilter<RotationParameters>("Free rotation", new RotateTransformer()));
+
             Application.Run(mainForm);
         }
     }
