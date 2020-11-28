@@ -67,6 +67,12 @@ namespace PhotoEnhancer
 
             mainForm.AddFilter(new TransformFilter<RotationParameters>("Free rotation", new RotateTransformer()));
 
+            mainForm.AddFilter(new TransformFilter("Side Diagonal Mirror", size => new Size(size.Height, size.Width),
+                   (point, size) => new Point(size.Width - point.Y-1, size.Height - 1 - point.X)
+          ));
+
+            mainForm.AddFilter(new TransformFilter<VerticalBevelTransformParameters>("Vertical Bevel", new VerticalBevelTransformer()));
+
             Application.Run(mainForm);
         }
     }

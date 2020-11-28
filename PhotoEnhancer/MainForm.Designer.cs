@@ -46,7 +46,7 @@
             // 
             // pictureBoxOriginal
             // 
-            this.pictureBoxOriginal.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.pictureBoxOriginal.BackColor = System.Drawing.Color.LavenderBlush;
             this.pictureBoxOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxOriginal.Location = new System.Drawing.Point(232, 34);
             this.pictureBoxOriginal.Name = "pictureBoxOriginal";
@@ -57,7 +57,7 @@
             // 
             // pictureBoxResult
             // 
-            this.pictureBoxResult.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.pictureBoxResult.BackColor = System.Drawing.Color.LavenderBlush;
             this.pictureBoxResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxResult.Location = new System.Drawing.Point(232, 295);
             this.pictureBoxResult.Name = "pictureBoxResult";
@@ -69,21 +69,23 @@
             // comboBoxFilters
             // 
             this.comboBoxFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxFilters.ForeColor = System.Drawing.SystemColors.Window;
+            this.comboBoxFilters.Font = new System.Drawing.Font("Goudy Old Style", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxFilters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.comboBoxFilters.FormattingEnabled = true;
             this.comboBoxFilters.Location = new System.Drawing.Point(12, 34);
             this.comboBoxFilters.Name = "comboBoxFilters";
-            this.comboBoxFilters.Size = new System.Drawing.Size(193, 21);
+            this.comboBoxFilters.Size = new System.Drawing.Size(193, 27);
             this.comboBoxFilters.TabIndex = 1;
             this.comboBoxFilters.Visible = false;
             this.comboBoxFilters.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilters_SelectedIndexChanged);
             // 
             // buttonApply
             // 
-            this.buttonApply.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.buttonApply.Font = new System.Drawing.Font("Goudy Old Style", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.buttonApply.Location = new System.Drawing.Point(57, 273);
+            this.buttonApply.BackColor = System.Drawing.Color.LavenderBlush;
+            this.buttonApply.Font = new System.Drawing.Font("Goudy Old Style", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.buttonApply.Location = new System.Drawing.Point(63, 295);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(99, 40);
             this.buttonApply.TabIndex = 2;
@@ -94,45 +96,51 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.menuStrip1.Font = new System.Drawing.Font("Poor Richard", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(584, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(584, 33);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uploadToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Goudy Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileToolStripMenuItem.Font = new System.Drawing.Font("Goudy Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.LavenderBlush;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 27);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // uploadToolStripMenuItem
             // 
+            this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
+            this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -145,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Tan;
+            this.BackColor = System.Drawing.Color.RosyBrown;
             this.ClientSize = new System.Drawing.Size(584, 562);
             this.Controls.Add(this.buttonApply);
             this.Controls.Add(this.comboBoxFilters);

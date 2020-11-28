@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Drawing;
 
 namespace PhotoEnhancer
@@ -12,17 +13,18 @@ namespace PhotoEnhancer
         public void Initialize(Size size, RotationParameters parameters)
         {
             originalSize = size;
-            double angleInRadians = parameters.AngleInDegrees * Math.PI / 180;
-            ResultSize= new Size(
-                (int)(size.Width * Math.Abs(Math.Cos(angleInRadians))
-                + size.Height * Math.Abs(Math.Sin(angleInRadians))),
-                (int)(size.Width * Math.Abs(Math.Sin(angleInRadians))
-                 + size.Height * Math.Abs(Math.Cos(angleInRadians))));
+            angleInRadians = parameters.AngleInDegrees * Math.PI / 180;
+
+            var absCos = Math.Abs(Math.Cos(angleInRadians));
+            var absSin = Math.Abs(Math.Sin(angleInRadians));
+
+            ResultSize = new Size(
+                (int)(size.Width * absCos + size.Height * absSin),
+                (int)(size.Width * absSin + size.Height * absCos));
         }
 
         public Point? MapPoint(Point point)
         {
-          
 
             point = new Point(point.X - ResultSize.Width / 2, point.Y - ResultSize.Height / 2);
 
