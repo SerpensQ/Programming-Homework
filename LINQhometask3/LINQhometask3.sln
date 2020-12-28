@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQhometask3", "LINQhometask3.csproj", "{3513CF92-0E09-4F80-B733-DDB6DB4FCC19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3513CF92-0E09-4F80-B733-DDB6DB4FCC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3513CF92-0E09-4F80-B733-DDB6DB4FCC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3513CF92-0E09-4F80-B733-DDB6DB4FCC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3513CF92-0E09-4F80-B733-DDB6DB4FCC19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A678B141-D50C-40B0-964B-49A27A029CED}
+	EndGlobalSection
+EndGlobal
