@@ -16,6 +16,8 @@ namespace PhotoEnhancer
             return "Monochromatic Noise";
         }
 
+        static Random r = new Random();
+
         public override Pixel ProcessPixel(Pixel originalPixel, IParameters parameters)
         {
 
@@ -23,8 +25,8 @@ namespace PhotoEnhancer
             var OriginalSaturation = Convertors.GetPixelSaturation(originalPixel);
             var OriginalLightness = Convertors.GetPixelLightness(originalPixel);
             
-            Random r = new Random();
-            var NewLightness=(parameters as MonochromeNoiseParameters).NoiseIntencity* r.Next(0,2)*OriginalLightness;
+           
+            var NewLightness=(parameters as MonochromeNoiseParameters).NoiseIntencity* r.NextDouble(0,2)+(1- (parameters as MonochromeNoiseParameters).NoiseIntencity) *OriginalLightness;
         
             return Convertors.HSLtoPixel(OriginalHue, OriginalSaturation, NewLightness);
         }
