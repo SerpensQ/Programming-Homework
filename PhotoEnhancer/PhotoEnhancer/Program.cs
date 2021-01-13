@@ -70,8 +70,9 @@ namespace PhotoEnhancer
                 var OriginalSaturation = Convertors.GetPixelSaturation(pixel);
                 var OriginalLightness = Convertors.GetPixelLightness(pixel);
 
-                static Random r = new Random();
-                var NewLightness = parameters.NoiseIntencity * r.NextDouble(0, 2) +(1-parameters.NoiseIntencity)* OriginalLightness;
+                  
+                Random r = new Random();
+                var NewLightness = parameters.NoiseIntencity * r.NextDouble() +(1-parameters.NoiseIntencity)* OriginalLightness;
 
                 return Convertors.HSLtoPixel(OriginalHue, OriginalSaturation, NewLightness);
                 }
@@ -79,7 +80,7 @@ namespace PhotoEnhancer
 
 
             mainForm.AddFilter(new TransformFilter("Side Diagonal Mirror", size => new Size(size.Height, size.Width),
-                   (point, size) => new Point(size.Width - point.Y-1, size.Height - 1 - point.X)
+                   (point, size) => new Point(size.Width - point.Y - 1, size.Height - 1 - point.X)));
 
             mainForm.AddFilter(new TransformFilter<VerticalBevelTransformParameters>("Vertical Bevel", new VerticalBevelTransformer()));
 
