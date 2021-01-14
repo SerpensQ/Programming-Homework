@@ -45,11 +45,14 @@ namespace LINQhometask3
         {
             return array
 
-                .SelectMany(line => line.Split(new[] { ' ', ',', '.', '!', '?' }))
-                .Select(word => word.ToLower())
+                .SelectMany(line => line.Split(new[] { ' ', ',', '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries))
+              
+                .Where(word => char.IsUpper(word[0]))
+              
                 .Distinct()
-                .Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word))
+               
                 .OrderBy(word => word)
+             
                 .ToArray();
         }
 
