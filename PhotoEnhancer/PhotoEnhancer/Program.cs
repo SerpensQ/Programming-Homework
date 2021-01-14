@@ -71,8 +71,8 @@ namespace PhotoEnhancer
                 var OriginalLightness = Convertors.GetPixelLightness(pixel);
 
                   
-                Random r = new Random();
-                var NewLightness = parameters.NoiseIntencity * r.NextDouble() +(1-parameters.NoiseIntencity)* OriginalLightness;
+              
+                var NewLightness = parameters.NoiseIntencity * MonochromeNoiseParameters.r.NextDouble() + (1-parameters.NoiseIntencity)* OriginalLightness;
 
                 return Convertors.HSLtoPixel(OriginalHue, OriginalSaturation, NewLightness);
                 }
