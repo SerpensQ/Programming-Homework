@@ -3,50 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
 
 namespace LINQhometask3
 {
     
     class Program
     {
+
         public static void Main(string[] args)
         {
+            var linesArray = new[]
+            {
+                "Вы помните, Вы все, конечно, помните.",
+                "Как я стоял, приблизившись к стене, взволнованно ходили вы по комнате и что-то резкое в лицо бросали мне.",
+                "Сегодня я в ударе нежных чувств. Я вспомнил вашу грустную усталость. И вот теперь я сообщить вам мчусь, каков я был и что со мною сталось.",
+                "Живите так, как вас ведет звезда, под кущей обновленной сени. С приветствием, вас помнящий всегда знакомый ваш, Сергей Есенин."
 
+            };
+            Console.WriteLine(string.Join(", ", GetCapitalLetterArray(linesArray)));
+
+            var lines = File.ReadAllLines("db.txt");
+            var fitnesCentre = lines
+                .Select(s => s.Split())
+                .Select(data => new Record
+                {
+                    ClientID = int.Parse(data[0]),
+                    Year = int.Parse(data[1]),
+                    Month = int.Parse(data[2]),
+                    Duration = int.Parse(data[3])
+                })
+                .ToList();
+
+            PrintTotalDuration(fitnesCentre);
+            Console.ReadKey();
         }
 
-        static string GetCapitalLetterArray(string[] array)
+       
+        static string[] GetCapitalLetterArray(string[] array)
         {
             return array
-                .Where(x => !string.IsNullOrEmpty(x))
-                .Select(x => x.ToUpper())
-                .OrderBy(x => x).ToString();
 
+                .SelectMany(line => line.Split(new[] { ' ', ',', '.', '!', '?' }))
+                .Select(word => word.ToLower())
+                .Distinct()
+                .Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word))
+                .OrderBy(word => word)
+                .ToArray();
         }
 
-        static void PrintTotalDurationHours(int year, int month, int hours, List<Record> db)
+        
+        static void PrintTotalDuration(List<Record> db)
         {
-            var lines = db
+            var durations = db
+                .GroupBy(record => (record.Year, record.Month))
+                .Select(records => (
+                  
+                    duration: records.Sum(record => record.Duration),
+                    month: records.Key.Month,
+                    year: records.Key.Year))
+              
+                .OrderByDescending(e => e.year)
+                .ThenBy(e => e.month);
 
-                .Select(e => new
-                {
-                    hours = int.Parse(e.ToString()),
-                    month = int.Parse(e.ToString()),
-                    year = int.Parse(e.ToString())
-                })
-                .GroupBy(e => e.month + e.year)
-                .OrderByDescending(e => e.Sum(c => c.hours))
-                .ThenBy(e => e.Key)
-                .Select(e => (e.Sum(c => c.hours), e.Key));
-
-            if (lines.Count() > 0)
-            {
-                foreach (var line in lines)
-                    Console.WriteLine($"Общая продолжительность занятий составила: {line.Item1} ч. в {line.Key} г.");
-
-            }
-            else Console.WriteLine($"За {year} год нет данных.");
-
-
+            foreach (var (duration, month, year) in durations)
+                Console.WriteLine($"Общая продолжительность занятий составила: {duration} ч. Месяц: {month}  Год: {year}.");
         }
+       
     }
 }
